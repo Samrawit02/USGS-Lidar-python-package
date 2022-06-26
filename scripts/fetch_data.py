@@ -4,9 +4,12 @@ import laspy
 import geopandas as gpd
 import numpy as np
 from shapely.geometry import box, Point, Polygon
-from sklearn import pipeline
+
+import matplotlib.pyplot as plt
 from file_helper import FileHelper
 
+
+data_path = "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/"
 pipeline_path = '../data/pipeline.json'
 
 class FetchAndLoad():
@@ -34,7 +37,7 @@ class FetchAndLoad():
         self.pipe_path = pipeline_path
         self.las_path = self.state+'.las'
         self.tif_path = self.state+'.tif'
-        self.api_path = "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/"+self.state+"/ept.json"
+        self.api_path = data_path +self.state+"/ept.json"
         
         self.pipeline = None
         
@@ -147,9 +150,33 @@ class FetchAndLoad():
         self.geo_df = geopanda_df
         print("Finished Making Geopandas Data Frame!")
         return geopanda_df
-    
+
     
     def get_geopandas_df(self):
         return self.geo_df
         
     
+    def plot_terrain_3d(self, gdf: gpd.GeoDataFrame, fig_size: tuple=(12, 10), size: float=0.01):
+        """
+        This method displays points in a geodataframe as a 3d scatter plot.
+
+        Args:
+            gdf (gpd.GeoDataFrame): [a geopandas dataframe containing points in the geometry column and height in the elevation column.]
+            fig_size (tuple, optional): [filesze of the figure to be displayed]. Defaults to (12, 10).
+            size (float, optional): [size of the points to be plotted]. Defaults to 0.01.
+        """
+        fig, ax = plt.subplots(1, 1, figsize=fig_size)
+        ax = plt.axes(projection='3d')
+        ax.scatter(gdf.geometry.x, gdf.geometry.y, gdf.elevation, s=size)
+        plt.show()
+
+
+    def geo_plot(gdf:gpd.GeoDataFrame)->None:
+        fig = plt.figure(figsize=(15,6))
+        ax = plt.axes(projection='3d')
+        ax.scatter3D(gdf.geometry.x, gdf.geometry.y, gdf.elevation, c=gdf.elevation, cmap='terrain')
+        ax.set_xlabel("Longitude")
+        ax.set_xlabel("Latitude")
+        ax.set_zlabel("Elevation")
+        plt.savefig("../files/terrain.png")
+        plt.show()
