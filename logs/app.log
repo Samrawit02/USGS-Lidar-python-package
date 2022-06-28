@@ -2043,3 +2043,4 @@ FileNotFoundError: [Errno 2] No such file or directory: './pipeline_template.jso
 28-06-2022 19:52:24 - [INFO] -  file_helper - (file_helper.py).read_json(line 32) - Json file read from ../data/pipeline.json.
 28-06-2022 19:52:24 - [INFO] -  file_helper - (file_helper.py).read_json(line 32) - Json file read from ../data/pipeline.json.
 28-06-2022 19:52:24 - [INFO] -  file_helper - (file_helper.py).read_json(line 32) - Json file read from ../data/pipeline.json.
+28-06-2022 19:59:47 - [INFO] -  file_helper - (file_helper.py).read_json(line 32) - Json file read from ../data/pipeline.json.
