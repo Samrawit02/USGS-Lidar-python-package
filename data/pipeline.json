@@ -7,48 +7,33 @@
       "tag": "readdata"
     },
     {
-        "polygon": "",
-        "type": "filters.crop"
-    },
+      "inputs": [ "readdata" ],
+      "polygon": "",
+      "type": "filters.crop",
+       "tag": "crop"
+
+  },
     {
-      "limits": "Classification![7:7]",
+      "limits": "Classification![2:7], Classification![9:9]",
       "type": "filters.range",
       "tag": "nonoise"
     },
     {
-      "assignment": "Classification[:]=0",
-      "tag": "wipeclasses",
-      "type": "filters.assign"
-    },
-    {
-      "in_srs":"EPSG:3857",
-      "out_srs": "",
-      "tag": "reprojectUTM",
-      "type": "filters.reprojection"
-    },
-    {
-      "tag": "groundify",
-      "type": "filters.smrf"
-    },
-    {
-      "limits": "Classification[2:2]",
-      "type": "filters.range",
-      "tag": "classify"
+      "out_srs": "EPSG:26915",
+      "in_srs": "EPSG:3857",
+      "type": "filters.reprojection",
+      "tag": "reprojection"
     },
     {
       "filename": "",
-      "inputs": [
-        "classify"
-      ],
+      "inputs": [ "reprojection" ],
       "tag": "writerslas",
       "type": "writers.las"
     },
     {
-      "filename": "iowa.tif",
+      "filename": "",
       "gdalopts": "tiled=yes,     compress=deflate",
-      "inputs": [
-        "writerslas"
-      ],
+      "inputs": [ "writerslas" ],
       "nodata": -9999,
       "output_type": "idw",
       "resolution": 1,

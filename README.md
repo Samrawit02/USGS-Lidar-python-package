@@ -23,10 +23,10 @@
 * Main Tasks
   - [x] Enable Elevation Data Fetching
   - [x] Enable Data Loading from saved tif and las/laz files
-  - [ ] Enable Terrian Visualization using retrieved or loaded LiDAR cloud 
-  - [ ] Enable Cloud Point Standardizing/Sub-Sampling
+  - [x] Enable Terrian Visualization using retrieved or loaded LiDAR cloud 
+  - [x] Enable Cloud Point Standardizing/Sub-Sampling
   - [ ] Enable data augmentation to retrieved geopandas data-frame
-  - [ ] QuickStart Guide Notebook
+  - [x] QuickStart Guide Notebook
   
  
  
