@@ -2,7 +2,6 @@ import logging
 from pathlib import Path
 from logging.handlers import TimedRotatingFileHandler
 
-
 class Logger:
 
     log_formatter = logging.Formatter(f"%(asctime)s - [%(levelname)s] -  %(name)s - (%(filename)s).%(funcName)s(line %(lineno)d) - %(message)s",
